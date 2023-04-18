@@ -6,6 +6,10 @@
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
 {% else %}
-  <p>You are not logged in</p>
+  <div class="container">
+    <p class="p-5">
+      You are not logged in
+    </p>
+  </div>
 {% endif %}
 {% endblock %}
