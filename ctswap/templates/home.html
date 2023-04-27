@@ -7,10 +7,20 @@
 <section class="hero">
   <div class="hero-body has-text-centered">
     <div class="container">
+      <p>Hi {{ user.get_username }}</p>
       <div class="box">
-        <p class="p-5">
-          Hi {{ user.username }}!
-        </p>
+        {% for post in object_list %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
+            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
+            <img src="/media/{{ post.photo }}" width = "250" height = auto>
+            <p class="card-text">{{ post.description|slice:":200" }}</p>
+            <a class="btn btn-outline-primary" href="#" role="button">Update</a><a class="btn btn-outline-danger" href="api/delete/{{ post.id }}" role="button">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </div>

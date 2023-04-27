@@ -25,10 +25,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', base.views.MyPosts.as_view(), name = 'home'),
+    path('browse/', base.views.AllPosts.as_view(), name = 'allposts'),
     path('api/', include('api.urls')),
-    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
-    path('post/', base.views.new_post, name='post'),
+    path('about/', TemplateView.as_view(template_name='about.html'), name = 'about'),
+    path('post/', base.views.new_post, name = 'post'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

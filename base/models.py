@@ -5,23 +5,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 CATEGORIES = [
-    ('appliances', 'Appliances'),
-    ('clothes', 'Clothes'),
-    ('education', 'Education'),
-    ('electronics', 'Electronics'),
-    ('free', 'Free'), 
-    ('homeandgarden', 'Home & Garden'), 
-    ('miscellaneous', 'Miscellaneous'),
-    ('music', 'Music'),
-    ('sports', 'Sports'),
-    ('vehicles', 'Vehicles'), 
+    ('Appliances', 'Appliances'),
+    ('Clothes', 'Clothes'),
+    ('Education', 'Education'),
+    ('Electronics', 'Electronics'),
+    ('Free', 'Free'), 
+    ('Home & Garden', 'Home & Garden'), 
+    ('Miscellaneous', 'Miscellaneous'),
+    ('Music', 'Music'),
+    ('Sports', 'Sports'),
+    ('Vehicles', 'Vehicles'), 
     ]
 
 class Item(models.Model):
     title = models.CharField(max_length = 50)
     author = models.CharField(max_length = 200)
-    category = models.CharField(max_length = 20, choices = CATEGORIES, default = 'miscellaneous')
-    price = models.DecimalField(max_digits = 15,decimal_places = 2)
+    category = models.CharField(max_length = 20, choices = CATEGORIES, default = 'Miscellaneous')
+    price = models.DecimalField(max_digits = 15, decimal_places = 2)
     created = models.DateTimeField(auto_now_add = True)
     photo = models.ImageField(upload_to='images/', null = True, blank = True)
     description = models.TextField(default='No description provided.')

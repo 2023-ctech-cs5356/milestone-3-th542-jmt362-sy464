@@ -17,7 +17,7 @@ def addItem(request):
     return Response()
 
 @api_view(['DELETE'])
-def deleteItem(request, post_id):
+def deleteItem(self, request, post_id):
     posts = Item.objects.get(id=post_id)
     posts.delete()
     return Response()
