@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock %}
+{% load static %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <div class="box">
+        <p class="has-text-centered">Thank you for using our platform.</p>
+        <p class="has-text-centered">Developers: Jonathan Tan, Subin Yun, Peter Hsieh</p>
+        <div class="columns is-centered is-mobile is-flex">
+          <div class="column is-128x128">
+            <figure class="image">
+              <img src="{% static 'img/JT.jpg' %}">
+            </figure>
+          </div>
+          <div class="column is-128x128">
+            <figure class="image">
+              <img src="{% static 'img/SY.jpg' %}">
+            </figure>
+          </div>
+          <div class="column is-128x128">
+            <figure class="image">
+              <img src="{% static 'img/PH.jpg' %}">
+            </figure>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

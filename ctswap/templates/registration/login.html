@@ -4,14 +4,20 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <div class="container">
-    <p class="p-5">
-      <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Log In</button>
-      </form>
-    </p>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box">
+        <p class="p-5">
+          <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit">Log In</button>
+          </form>
+        </p>
+      </div>
+    </div>
   </div>
+</section>
   
 {% endblock %}

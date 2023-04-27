@@ -15,3 +15,10 @@ def addItem(request):
     if serializer.is_valid():
         serializer.save()
     return Response()
+
+@api_view(['DELETE'])
+def deleteItem(request, post_id):
+    posts = Item.objects.get(id=post_id)
+    posts.delete()
+    return Response()
+
