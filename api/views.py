@@ -1,3 +1,4 @@
+from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from base.models import Item
@@ -16,9 +17,9 @@ def addItem(request):
         serializer.save()
     return Response()
 
-@api_view(['DELETE'])
-def deleteItem(self, request, post_id):
+@api_view(['DELETE', 'POST'])
+def deleteItem(self, post_id):
     posts = Item.objects.get(id=post_id)
     posts.delete()
-    return Response()
+    return redirect('home')
 

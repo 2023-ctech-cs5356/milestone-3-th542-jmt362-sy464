@@ -8,6 +8,7 @@
   <div class="hero-body has-text-centered">
     <div class="container">
       <p>Hi {{ user.get_username }}</p>
+      <h3>Manage Your Listings</h3>
       <div class="box">
         {% for post in object_list %}
         <div class="card mb-4">
@@ -20,10 +21,8 @@
             <a class="btn btn-outline-primary" href="#" role="button">Update</a>
             <form action="api/delete/{{ post.id }}" method="post">
               {% csrf_token %}
-              <input type="hidden" name="_method" value="delete">
-              <input type="submit" value="Delete">
+              <input class="btn btn-outline-danger" type="submit" value="Delete" />
             </form>
-          <a class="btn btn-outline-danger" href="api/delete/{{ post.id }}" role="button">Delete</a>
           </div>
         </div>
         {% endfor %}
