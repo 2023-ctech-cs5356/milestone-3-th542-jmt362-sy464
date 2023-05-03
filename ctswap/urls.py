@@ -41,6 +41,7 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name='about.html'), name = 'about'),
     path('post/', base.views.new_post, name = 'post'),
     path('update_post/<int:post_id>', base.views.update_post, name='update-post'),
+    path('search/', base.views.search_posts, name = 'searchposts'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

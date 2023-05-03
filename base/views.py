@@ -30,6 +30,11 @@ def update_post(request, post_id):
         return redirect('home')
     return render(request, 'editpost.html', {'post': post, 'form': form})
 
+def search_posts(request):
+    if request.method == "POST":
+        searchterm = request.POST['searchterm']
+        items = Item.objects.filter(title__icontains = searchterm)
+    return render(request, 'searchresults.html', {'searchterm': searchterm, 'items': items})
 
 class MyPosts(generic.ListView):
     template_name = 'home.html'

@@ -67,8 +67,9 @@
               </li>
               {% endif %}
             </ul>
-            <form>
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            <form method = 'POST' action = "/search/">
+              {% csrf_token %}
+              <input class="form-control" type="text" placeholder="Search Items" name="searchterm" aria-label="Search">
             </form>
           </div>
         </div>
