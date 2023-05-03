@@ -20,6 +20,7 @@ CATEGORIES = [
 class Item(models.Model):
     title = models.CharField(max_length = 50)
     author = models.CharField(max_length = 200)
+    contact =  models.CharField(max_length = 50)
     category = models.CharField(max_length = 20, choices = CATEGORIES, default = 'Miscellaneous')
     price = models.DecimalField(max_digits = 15, decimal_places = 2)
     created = models.DateTimeField(auto_now_add = True)
