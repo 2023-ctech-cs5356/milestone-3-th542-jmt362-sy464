@@ -22,6 +22,15 @@ def new_post(request):
         }
     return render(request, 'post.html', context)
 
+def update_post(request, post_id):
+    post = Item.objects.get(pk = post_id)
+    form = ItemForm(request.POST or request.FILES or None, instance = post)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, 'editpost.html', {'post': post, 'form': form})
+
+
 class MyPosts(generic.ListView):
     template_name = 'home.html'
 
@@ -30,4 +39,44 @@ class MyPosts(generic.ListView):
 
 class AllPosts(generic.ListView):
     queryset = Item.objects.order_by('-created')
+    template_name = 'allposts.html'
+
+class AppliancesPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Appliances').order_by('-created')
+    template_name = 'allposts.html'
+
+class ClothesPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Clothes').order_by('-created')
+    template_name = 'allposts.html'
+
+class EducationPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Education').order_by('-created')
+    template_name = 'allposts.html'
+
+class ElectronicsPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Electronics').order_by('-created')
+    template_name = 'allposts.html'
+
+class FreePosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Free').order_by('-created')
+    template_name = 'allposts.html'
+
+class HomeAndGardenPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Home & Garden').order_by('-created')
+    template_name = 'allposts.html'
+
+class MiscellaneousPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Miscellaneous').order_by('-created')
+    template_name = 'allposts.html'
+
+class MusicPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Music').order_by('-created')
+    template_name = 'allposts.html'
+
+class SportsPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Sports').order_by('-created')
+    template_name = 'allposts.html'
+
+class VehiclesPosts(generic.ListView):
+    queryset = Item.objects.filter(category = 'Vehicles').order_by('-created')
     template_name = 'allposts.html'

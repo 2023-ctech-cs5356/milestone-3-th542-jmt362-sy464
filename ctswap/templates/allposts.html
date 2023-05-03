@@ -8,17 +8,21 @@
   <div class="hero-body has-text-centered">
     <div class="container">
       <div class="box">
-        {% for post in object_list %}
-        <div class="card mb-4">
-          <div class="card-body">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
-            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
-            <img src="/media/{{ post.photo }}" width = "250" height = auto>
-            <p class="card-text">{{ post.description|slice:":200" }}</p>
+        {% if not object_list %}
+          <p>There are no items in this category</p>
+        {% else %}
+          {% for post in object_list %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
+              <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
+              <img src="/media/{{ post.photo }}" width = "250" height = auto>
+              <p class="card-text">{{ post.description|slice:":200" }}</p>
+            </div>
           </div>
-        </div>
-        {% endfor %}
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>

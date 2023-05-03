@@ -22,4 +22,3 @@ def deleteItem(self, post_id):
     posts = Item.objects.get(id=post_id)
     posts.delete()
     return redirect('home')
-
