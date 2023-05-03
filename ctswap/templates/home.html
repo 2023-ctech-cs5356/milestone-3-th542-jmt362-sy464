@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
-
+{% load static %}
 {% block content %}
 {% if user.is_authenticated %}
 <section class="hero">
@@ -16,10 +16,14 @@
             <h2 class="card-title">{{ post.title }}</h2>
             <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
             <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
-            <img src="/media/{{ post.photo }}" width = "250" height = auto>
+            {% if not post.photo %}
+              <img src="{% static 'img/img_unavail.jpg' %}" width = "250" height = auto>
+            {% else %}
+              <img src="/media/{{ post.photo }}" width = "250" height = auto>
+            {% endif %}
             <p class="card-text">{{ post.description|slice:":200" }}</p>
             <a class="btn btn-outline-primary" href="update_post/{{ post.id }}" role="button">Update</a>
-            <form action="api/delete/{{ post.id }}" method="post">
+            <form action="api/delete/{{ post.id }}" method="post" style="display: inline;">
               {% csrf_token %}
               <input class="btn btn-outline-danger" type="submit" value="Delete" />
             </form>
