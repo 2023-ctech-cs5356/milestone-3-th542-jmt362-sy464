@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <div class="box">
+        {% if searchterm %}
+          <p>You searched for: {{ searchterm }}</p>
+        {% else %}
+          <p>You did not enter a search term!</p>
+        {% endif %}
+        {% if not items %}
+          <p>There are no items that match this search</p>
+        {% else %}
+          {% for post in items %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
+              <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
+              {% if not post.photo %}
+                <img src="{% static 'img/img_unavail.jpg' %}" width = "250" height = auto>
+              {% else %}
+                <img src="/media/{{ post.photo }}" width = "250" height = auto>
+              {% endif %}
+              <p class="card-text">{{ post.description|slice:":200" }}</p>
+              <p class="card-text">Contact: {{ post.contact|slice:":200" }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <div class="box">
+        <p class="p-5">
+          You are not logged in
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

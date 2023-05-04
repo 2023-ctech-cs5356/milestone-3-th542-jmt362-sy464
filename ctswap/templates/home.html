@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+<section class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <p>Hi {{ user.get_username }}</p>
+      <h3>Manage Your Listings</h3>
+      <div class="box">
+        {% for post in object_list %}
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text text-muted h5">{{ post.category }} | {{ post.price}} </p>
+            <p class="card-text text-muted h6">{{ post.author }} | {{ post.created}} </p>
+            {% if not post.photo %}
+              <img src="{% static 'img/img_unavail.jpg' %}" width = "250" height = auto>
+            {% else %}
+              <img src="/media/{{ post.photo }}" width = "250" height = auto>
+            {% endif %}
+            <p class="card-text">{{ post.description|slice:":200" }}</p>
+            <a class="btn btn-outline-primary" href="update_post/{{ post.id }}" role="button">Update</a>
+            <form action="api/delete/{{ post.id }}" method="post" style="display: inline;">
+              {% csrf_token %}
+              <input class="btn btn-outline-danger" type="submit" value="Delete" />
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <div class="box">
+        <p class="p-5">
+          You are not logged in
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
